@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsfj8gwsimieg"]
+
+[ext_resource type="Script" uid="uid://db4mdd4caj8lk" path="res://hud.gd" id="1_64ctp"]
+[ext_resource type="FontFile" uid="uid://m2paclo1lpld" path="res://fonts/Xolonium-Regular.ttf" id="2_8sq4i"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_64ctp"]
+action = &"start_game"
+
+[sub_resource type="Shortcut" id="Shortcut_8sq4i"]
+events = [SubResource("InputEventAction_64ctp")]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_64ctp")
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 192.0
+offset_top = 467.0
+offset_right = 285.0
+offset_bottom = 498.0
+theme_override_fonts/font = ExtResource("2_8sq4i")
+shortcut = SubResource("Shortcut_8sq4i")
+text = "START"
+
+[node name="ScoreLabel" type="Label" parent="."]
+show_behind_parent = true
+offset_left = 208.0
+offset_top = 108.0
+offset_right = 253.0
+offset_bottom = 186.0
+theme_override_fonts/font = ExtResource("2_8sq4i")
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MessageLabel" type="Label" parent="."]
+offset_left = 185.0
+offset_top = 350.0
+offset_right = 289.0
+offset_bottom = 373.0
+theme_override_fonts/font = ExtResource("2_8sq4i")
+text = "COCK BREAKER"
+
+[node name="MessageTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
